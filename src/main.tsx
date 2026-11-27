@@ -11,8 +11,18 @@ if (typeof window !== 'undefined') {
 
   if (import.meta.env.PROD && 'serviceWorker' in navigator) {
     try {
-      registerSW({
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (refreshing) return;
+        refreshing = true;
+        window.location.reload();
+      });
+
+      const updateSW = registerSW({
         immediate: true,
+        onNeedRefresh() {
+          void updateSW(true);
+        },
         onRegisterError() {
           // Ignore SW registration issues in restricted WebViews / Private Mode
         },

@@ -116,7 +116,7 @@ export const QuranPage: React.FC<QuranPageProps> = React.memo(
 
         {/* Full-screen edge-to-edge editorial inner container with symmetric iOS safe-area padding */}
         <div
-          className={`relative z-10 w-full pl-[max(1.125rem,env(safe-area-inset-left))] pr-[max(1.125rem,env(safe-area-inset-right))] sm:px-6 lg:px-8 pb-12 sm:pb-16 ${
+          className={`relative z-10 w-full pl-[max(1.25rem,env(safe-area-inset-left))] pr-[max(1.25rem,env(safe-area-inset-right))] sm:px-7 lg:px-9 pb-12 sm:pb-16 ${
             isFirstPage
               ? 'pt-[calc(4.15rem+env(safe-area-inset-top))] sm:pt-[calc(4.85rem+env(safe-area-inset-top))]'
               : 'pt-6 sm:pt-8'
@@ -211,10 +211,11 @@ export const QuranPage: React.FC<QuranPageProps> = React.memo(
           {/* Mushaf Verses Body — Full Tajweed */}
           <p
             dir="rtl"
-            className="font-uthmani text-justify m-0"
+            className="font-uthmani text-justify m-0 w-full box-border"
             style={{
               fontSize: 'calc(clamp(22px, 2.35vw, 30px) * var(--font-scale, 1))',
               lineHeight: 2.24,
+              paddingInline: '2px',
               textAlignLast: isFinalPage ? 'center' : 'start',
               textJustify: 'inter-word',
             }}

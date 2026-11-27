@@ -100,7 +100,7 @@ export const AyahRosette: React.FC<AyahRosetteProps> = React.memo(
           width: boxWidth,
           height: boxHeight,
           marginInlineStart: '0.16em',
-          marginInlineEnd: '0.04em',
+          marginInlineEnd: '0.12em',
           verticalAlign: 'middle',
         }}
         aria-label={`آية ${label}`}

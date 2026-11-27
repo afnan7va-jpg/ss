@@ -49,8 +49,11 @@ export default defineConfig(() => {
           ],
         },
         workbox: {
+          skipWaiting: true,
+          clientsClaim: true,
+          navigateFallback: null,
           globPatterns: [
-            '**/*.{js,css,html,ico,svg,woff2}',
+            '**/*.{js,css,ico,svg,woff2}',
             'favicon.png',
             'apple-touch-icon.png',
             'app-emblem.png',
