@@ -1,0 +1,418 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+  font-family: "UthmanicHafs";
+  src:
+    url("/fonts/UthmanicHafs1Ver18.woff2") format("woff2"),
+    url("/fonts/UthmanicHafs1Ver18.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AmiriEditorial";
+  src: url("/fonts/Amiri-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AmiriEditorial";
+  src: url("/fonts/Amiri-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ArefRuqaaTitle";
+  src: url("/fonts/ArefRuqaa-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ThmanyahSans";
+  src: url("/fonts/thmanyah-sans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ThmanyahSans";
+  src: url("/fonts/thmanyah-sans-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ThmanyahSans";
+  src: url("/fonts/thmanyah-sans-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   MASTER DESIGN SYSTEM TOKENS (Official Brand Palette + Apple HIG Semantics)
+   ========================================================================== */
+:root {
+  color-scheme: light;
+
+  /* Official Primary Brand Palette */
+  --brand-bubblegum: #FFA9DD;
+  --brand-bright-orange: #FEB700;
+  --brand-sunny-yellow: #FFE26F;
+  --brand-lime-green: #C4E02F;
+  --brand-blue-sky: #7CD5D9;
+  --brand-periwinkle: #99ADFF;
+  --brand-berry-daiquiri: #F54C91;
+  --brand-orange-dream: #FFA547;
+  --brand-lemon-rind: #F7DC00;
+  --brand-key-lime: #DCF151;
+  --brand-pacific-punch: #00BCD6;
+  --brand-grape-refresh: #B696E3;
+
+  /* Official Additional Brand Colors */
+  --brand-blush-rose: #F8B0BE;
+  --brand-coral-blossom: #EF8F83;
+  --brand-coral-flame: #F15942;
+  --brand-mint-mist: #CFE7CD;
+  --brand-sunflower: #FACA2A;
+  --brand-warm-parchment: #FCF0E5;
+  --brand-crimson: #EB0000;
+  --brand-petal-pink: #FFCECF;
+  --brand-ice-cyan: #96E3EF;
+  --brand-amber-tangerine: #FF990F;
+  --brand-aqua-whisper: #E0F7FB;
+  --brand-emerald-jade: #00AE7D;
+  --brand-honey-gold: #FFD15C;
+  --brand-rose-veil: #FFE9EC;
+
+  /* Active Semantic Theme Tokens (overridden dynamically per page) */
+  --color-brand-primary: var(--brand-bubblegum);
+  --color-brand-secondary: var(--brand-berry-daiquiri);
+  --color-brand-accent: var(--brand-berry-daiquiri);
+  --color-brand-on-fill: #3B0822;
+  --color-background: #F2F2F7;
+  --color-surface: rgba(255, 255, 255, 0.78);
+  --color-text-primary: #141416;
+  --color-text-secondary: rgba(28, 28, 30, 0.70);
+  --color-border: rgba(60, 60, 67, 0.11);
+  --color-success: #007A57;
+  --color-success-tint: rgba(207, 231, 205, 0.70);
+  --color-warning: #B45309;
+  --color-warning-tint: rgba(255, 209, 92, 0.36);
+  --color-danger: #C80000;
+  --color-danger-tint: rgba(255, 206, 207, 0.65);
+
+  /* Spacing & Radius Scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 26px;
+  --radius-pill: 9999px;
+
+  /* Apple Liquid Glass & Material Surfaces */
+  --ios-canvas: var(--color-background);
+  --apple-bar-bg: rgba(255, 255, 255, 0.76);
+  --apple-bar-border: rgba(0, 0, 0, 0.08);
+  --apple-bar-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.09);
+
+  --apple-sheet-bg: rgba(255, 255, 255, 0.84);
+  --apple-sheet-border: rgba(0, 0, 0, 0.09);
+  --apple-sheet-shadow: 0 22px 50px -14px rgba(0, 0, 0, 0.17);
+
+  --apple-tile-bg: rgba(255, 255, 255, 0.66);
+  --apple-tile-border: rgba(0, 0, 0, 0.06);
+
+  --apple-pill-bg: rgba(255, 255, 255, 0.68);
+  --apple-pill-border: rgba(0, 0, 0, 0.08);
+
+  --apple-track-bg: rgba(120, 120, 128, 0.12);
+  --apple-segment-bg: rgba(255, 255, 255, 0.94);
+  --apple-segment-shadow: 0 1px 4px rgba(0, 0, 0, 0.10), 0 0 0 0.5px rgba(0, 0, 0, 0.05);
+
+  --apple-divider: rgba(60, 60, 67, 0.11);
+  --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --color-background: #000000;
+  --color-surface: rgba(26, 26, 30, 0.82);
+  --color-text-primary: #F5F5F7;
+  --color-text-secondary: rgba(235, 235, 245, 0.72);
+  --color-border: rgba(235, 235, 245, 0.13);
+  --color-success: #5EE0B5;
+  --color-success-tint: rgba(0, 174, 125, 0.22);
+  --color-warning: #FFD15C;
+  --color-warning-tint: rgba(255, 153, 15, 0.22);
+  --color-danger: #FF8A8A;
+  --color-danger-tint: rgba(235, 0, 0, 0.20);
+
+  --ios-canvas: var(--color-background);
+  --apple-bar-bg: rgba(22, 22, 26, 0.76);
+  --apple-bar-border: rgba(255, 255, 255, 0.12);
+  --apple-bar-shadow: 0 10px 28px -10px rgba(0, 0, 0, 0.52);
+
+  --apple-sheet-bg: rgba(26, 26, 30, 0.85);
+  --apple-sheet-border: rgba(255, 255, 255, 0.13);
+  --apple-sheet-shadow: 0 24px 56px -14px rgba(0, 0, 0, 0.70);
+
+  --apple-tile-bg: rgba(255, 255, 255, 0.06);
+  --apple-tile-border: rgba(255, 255, 255, 0.10);
+
+  --apple-pill-bg: rgba(255, 255, 255, 0.10);
+  --apple-pill-border: rgba(255, 255, 255, 0.13);
+
+  --apple-track-bg: rgba(120, 120, 128, 0.24);
+  --apple-segment-bg: rgba(255, 255, 255, 0.20);
+  --apple-segment-shadow: 0 1px 4px rgba(0, 0, 0, 0.40);
+
+  --apple-divider: rgba(235, 235, 245, 0.13);
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background-color: var(--ios-canvas);
+  color: var(--color-text-primary);
+  direction: rtl;
+  font-family: "ThmanyahSans", -apple-system, BlinkMacSystemFont, "SF Pro Arabic", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  font-synthesis: none;
+}
+
+.font-uthmani {
+  font-family: "UthmanicHafs", "AmiriEditorial", serif;
+  font-feature-settings: "liga" 1, "calt" 1, "mark" 1, "mkmk" 1, "kern" 1;
+  font-variant-ligatures: common-ligatures contextual;
+}
+
+.font-editorial {
+  font-family: "ThmanyahSans", -apple-system, BlinkMacSystemFont, "SF Pro Arabic", sans-serif;
+}
+
+.font-ruqaa {
+  font-family: "ArefRuqaaTitle", "ThmanyahSans", serif;
+}
+
+.font-amiri {
+  font-family: "AmiriEditorial", "UthmanicHafs", serif;
+}
+
+/* Typographic Hierarchy Utilities */
+.type-title {
+  font-family: "ThmanyahSans", -apple-system, BlinkMacSystemFont, "SF Pro Arabic", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.type-heading {
+  font-family: "ThmanyahSans", -apple-system, BlinkMacSystemFont, "SF Pro Arabic", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.type-body {
+  font-family: "ThmanyahSans", -apple-system, BlinkMacSystemFont, "SF Pro Arabic", sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.85;
+}
+
+.type-label {
+  font-family: "ThmanyahSans", -apple-system, BlinkMacSystemFont, "SF Pro Arabic", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.type-caption {
+  font-family: "ThmanyahSans", -apple-system, BlinkMacSystemFont, "SF Pro Arabic", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Apple Frosted Glass Navigation & Legend Capsule */
+.ios-glass-bar {
+  background: var(--apple-bar-bg);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  border: 1px solid var(--apple-bar-border);
+  box-shadow: var(--apple-bar-shadow);
+}
+
+/* Apple Frosted Glass Sheet / Inspector / Modal */
+.ios-sheet-surface {
+  background: var(--apple-sheet-bg);
+  backdrop-filter: saturate(185%) blur(30px);
+  -webkit-backdrop-filter: saturate(185%) blur(30px);
+  border: 1px solid var(--apple-sheet-border);
+  box-shadow: var(--apple-sheet-shadow);
+}
+
+/* Apple Frosted Pill & Circular Button */
+.ios-liquid-pill {
+  background: var(--apple-pill-bg);
+  backdrop-filter: saturate(170%) blur(18px);
+  -webkit-backdrop-filter: saturate(170%) blur(18px);
+  border: 1px solid var(--apple-pill-border);
+}
+
+/* Apple Inset Grouped Glass Tile */
+.ios-liquid-tile {
+  background: var(--apple-tile-bg);
+  backdrop-filter: saturate(175%) blur(20px);
+  -webkit-backdrop-filter: saturate(175%) blur(20px);
+  border: 1px solid var(--apple-tile-border);
+}
+
+/* Apple UISegmentedControl Active Thumb */
+.ios-segment-active {
+  background: var(--apple-segment-bg);
+  box-shadow: var(--apple-segment-shadow);
+}
+
+/* Pure silky single-axis iOS native momentum scroll stream */
+.ios-scroll-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  touch-action: pan-y;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(120, 120, 128, 0.28) transparent;
+}
+
+.ios-scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ios-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ios-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(120, 120, 128, 0.26);
+  border-radius: 9999px;
+}
+
+.ios-page-fullbleed {
+  width: 100%;
+  min-height: 100dvh;
+  contain: layout style;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Subtle inner scroll for Tafsir & Sheets */
+.apple-inner-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(120, 120, 128, 0.28) transparent;
+}
+
+.apple-inner-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.apple-inner-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.apple-inner-scroll::-webkit-scrollbar-thumb {
+  background: rgba(120, 120, 128, 0.28);
+  border-radius: 9999px;
+}
+
+/* Uniform padding prevents horizontal layout shift in justified Uthmani text */
+.verse-interactive {
+  padding-inline: 0.16em;
+  padding-block: 0.04em;
+  border-radius: 12px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition:
+    background-color 180ms var(--apple-ease),
+    box-shadow 180ms var(--apple-ease);
+}
+
+.verse-interactive:hover {
+  background-color: rgba(120, 120, 128, 0.06);
+}
+
+.dark .verse-interactive:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.verse-pill-highlight {
+  background-color: var(--verse-hl-bg);
+  box-shadow:
+    inset 0 0 0 1px var(--verse-hl-border),
+    0 3px 12px -3px var(--verse-hl-shadow);
+}
+
+.verse-interactive:focus-visible,
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-brand-accent);
+  outline-offset: 2px;
+}
+
+.verse-interactive .ayah-rosette {
+  transition: transform 180ms var(--apple-ease);
+}
+
+.verse-interactive:hover .ayah-rosette {
+  transform: scale(1.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ios-scroll-container {
+    scroll-behavior: auto;
+  }
+  .verse-interactive,
+  .verse-interactive .ayah-rosette {
+    transition: none;
+  }
+}
