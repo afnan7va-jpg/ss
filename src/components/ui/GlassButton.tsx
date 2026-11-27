@@ -54,12 +54,16 @@ export const GlassButton: React.FC<GlassButtonProps> = ({
     ...style,
   };
 
+  const displayClass = /\b(hidden|block|flex|grid|inline-block)\b/.test(className)
+    ? ''
+    : 'inline-flex';
+
   return (
     <button
       type={type}
       disabled={disabled || loading}
       style={resolvedStyle}
-      className={`inline-flex items-center justify-center gap-1.5 font-editorial font-bold whitespace-nowrap shrink-0 transition-[transform,opacity,background-color] duration-150 ease-out active:scale-[0.96] disabled:opacity-35 disabled:pointer-events-none cursor-pointer ${sizeClass} ${variantClass} ${className}`}
+      className={`${displayClass} items-center justify-center gap-1.5 font-editorial font-bold whitespace-nowrap shrink-0 transition-[transform,opacity,background-color] duration-150 ease-out active:scale-[0.96] disabled:opacity-35 disabled:pointer-events-none cursor-pointer ${sizeClass} ${variantClass} ${className}`}
       {...props}
     >
       {loading ? <Loader2 className="w-4 h-4 animate-spin shrink-0" /> : children}

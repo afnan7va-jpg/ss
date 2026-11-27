@@ -16,12 +16,12 @@ export const AppLogo: React.FC<AppLogoProps> = ({
   const boxClass =
     size === 'lg'
       ? 'w-16 h-16 sm:w-18 sm:h-18 rounded-[18px] sm:rounded-[20px] p-1.5 shadow-md ring-1 ring-black/[0.06]'
-      : 'w-7 h-7 rounded-[9px] p-[2px] border border-black/[0.06]';
+      : 'w-8 h-8 rounded-[10px] p-[2px] border border-black/[0.06] shadow-xs';
 
   const imgClass =
     size === 'lg'
       ? 'w-full h-full object-contain rounded-[14px]'
-      : 'w-full h-full object-contain rounded-[7px]';
+      : 'w-full h-full object-contain rounded-[8px]';
 
   return (
     <div

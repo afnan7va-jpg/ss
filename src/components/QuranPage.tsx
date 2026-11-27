@@ -85,12 +85,28 @@ export const QuranPage: React.FC<QuranPageProps> = React.memo(
         style={{
           background: palette.pageBackground,
         }}
-        className="ios-page-fullbleed relative flex flex-col justify-start transition-colors duration-300"
+        className="ios-page-fullbleed relative overflow-hidden flex flex-col justify-start transition-colors duration-300"
       >
+        {/* Full-bleed uploaded gradient artwork + smart light/dark tonal adaptation */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-cover bg-center transition-[filter] duration-300"
+          style={{
+            backgroundImage: `url("${palette.bgImage}")`,
+            filter: palette.bgImageFilter,
+            transform: 'scale(1.03)',
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 transition-colors duration-300"
+          style={{background: palette.bgOverlay}}
+        />
+
         {/* Full-bleed dual-color top separator hairline between pages */}
         {!isFirstPage && (
           <div
-            className="h-[2px] w-full opacity-80"
+            className="relative z-10 h-[2px] w-full opacity-80"
             style={{
               background: `linear-gradient(to left, ${palette.accentPrimary}, ${palette.accentSecondary})`,
             }}
@@ -98,13 +114,11 @@ export const QuranPage: React.FC<QuranPageProps> = React.memo(
           />
         )}
 
-        {/* Full-bleed editorial inner container */}
+        {/* Full-screen edge-to-edge editorial inner container */}
         <div
-          className={`relative z-10 w-full max-w-[940px] mx-auto px-5 sm:px-10 lg:px-14 pb-12 sm:pb-16 ${
+          className={`relative z-10 w-full px-3 sm:px-5 lg:px-7 pb-12 sm:pb-16 ${
             isFirstPage
-              ? tajweedEnabled
-                ? 'pt-[calc(6.4rem+env(safe-area-inset-top))] sm:pt-[calc(7.25rem+env(safe-area-inset-top))]'
-                : 'pt-[calc(4.35rem+env(safe-area-inset-top))] sm:pt-[calc(5.05rem+env(safe-area-inset-top))]'
+              ? 'pt-[calc(4.15rem+env(safe-area-inset-top))] sm:pt-[calc(4.85rem+env(safe-area-inset-top))]'
               : 'pt-6 sm:pt-8'
           }`}
         >
@@ -215,18 +229,18 @@ export const QuranPage: React.FC<QuranPageProps> = React.memo(
 
               const hlBg = isSilkActive
                 ? theme === 'dark'
-                  ? 'rgba(255, 255, 255, 0.12)'
-                  : 'rgba(255, 255, 255, 0.88)'
+                  ? 'rgba(255, 255, 255, 0.14)'
+                  : 'rgba(255, 255, 255, 0.46)'
                 : theme === 'dark'
-                  ? 'rgba(255, 255, 255, 0.06)'
-                  : 'rgba(255, 255, 255, 0.56)';
+                  ? 'rgba(255, 255, 255, 0.08)'
+                  : 'rgba(255, 255, 255, 0.30)';
               const hlBorder = isSilkActive
                 ? theme === 'dark'
-                  ? withAlpha(palette.accentPrimary, 0.48)
-                  : withAlpha(palette.accentSecondary, 0.38)
+                  ? 'rgba(255, 255, 255, 0.36)'
+                  : 'rgba(255, 255, 255, 0.80)'
                 : theme === 'dark'
-                  ? withAlpha(palette.accentPrimary, 0.22)
-                  : withAlpha(palette.accentSecondary, 0.20);
+                  ? withAlpha(palette.accentPrimary, 0.28)
+                  : withAlpha(palette.accentSecondary, 0.26);
               const hlShadow = isSilkActive
                 ? theme === 'dark'
                   ? 'rgba(0, 0, 0, 0.42)'
@@ -301,7 +315,7 @@ export const QuranPage: React.FC<QuranPageProps> = React.memo(
           {isFinalPage && (
             <div
               id="dua-khatmah"
-              className="relative mt-14 sm:mt-16 pt-6 pb-6 text-center max-w-[640px] mx-auto"
+              className="relative mt-14 sm:mt-16 pt-6 pb-6 text-center w-full max-w-[1040px] mx-auto"
             >
               <DuaFloralDivider palette={palette} />
               <p
@@ -321,7 +335,7 @@ export const QuranPage: React.FC<QuranPageProps> = React.memo(
                 {DUA_TITLE}
               </h2>
               <p
-                className="font-amiri font-normal max-w-[560px] mx-auto m-0"
+                className="font-amiri font-normal w-full max-w-[920px] mx-auto m-0"
                 style={{
                   color: palette.duaTextColor,
                   fontSize: 'calc(clamp(20px, 2.15vw, 26px) * var(--font-scale, 1))',

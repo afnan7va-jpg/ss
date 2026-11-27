@@ -3,7 +3,6 @@ import {MotionConfig} from 'motion/react';
 import {InstallGuideModal} from './components/InstallGuideModal';
 import {QuranPage} from './components/QuranPage';
 import {ReaderSettingsSheet} from './components/ReaderSettingsSheet';
-import {TajweedLegendBar} from './components/TajweedLegendBar';
 import {TopControlBar} from './components/TopControlBar';
 import {Toast, ToastMessage, ToastTone} from './components/ui/Toast';
 import {VerseInspectorBar} from './components/VerseInspectorBar';
@@ -110,13 +109,7 @@ export default function App() {
       if (!container || !el) return;
 
       const isCompactViewport = window.innerWidth < 640;
-      const headerOffset = tajweedEnabled
-        ? isCompactViewport
-          ? 88
-          : 104
-        : isCompactViewport
-          ? 54
-          : 64;
+      const headerOffset = isCompactViewport ? 56 : 66;
       const topOffset = clamped === 1 ? 0 : Math.max(0, el.offsetTop - headerOffset);
       programmaticScrollUntilRef.current =
         behavior === 'smooth' ? performance.now() + 650 : 0;
@@ -126,7 +119,7 @@ export default function App() {
         behavior,
       });
     },
-    [setCurrentPage, tajweedEnabled]
+    [setCurrentPage]
   );
 
   const focusVerseOnScreen = useCallback(
@@ -371,6 +364,7 @@ export default function App() {
         <TopControlBar
           currentPage={currentPage}
           theme={theme}
+          tajweedEnabled={tajweedEnabled}
           bookmarkedVerse={bookmarkedVerse}
           isInstalled={isInstalled}
           onSelectPage={(page) => scrollToPage(page)}
@@ -381,12 +375,6 @@ export default function App() {
           onToggleTheme={toggleTheme}
           onOpenSettings={() => setIsSettingsOpen(true)}
           onInstallClick={promptInstall}
-        />
-
-        <TajweedLegendBar
-          visible={tajweedEnabled}
-          currentPage={currentPage}
-          theme={theme}
         />
 
         <Toast toast={toast} />
