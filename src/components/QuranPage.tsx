@@ -114,9 +114,9 @@ export const QuranPage: React.FC<QuranPageProps> = React.memo(
           />
         )}
 
-        {/* Full-screen edge-to-edge editorial inner container */}
+        {/* Full-screen edge-to-edge editorial inner container with symmetric iOS safe-area padding */}
         <div
-          className={`relative z-10 w-full px-3 sm:px-5 lg:px-7 pb-12 sm:pb-16 ${
+          className={`relative z-10 w-full pl-[max(1.125rem,env(safe-area-inset-left))] pr-[max(1.125rem,env(safe-area-inset-right))] sm:px-6 lg:px-8 pb-12 sm:pb-16 ${
             isFirstPage
               ? 'pt-[calc(4.15rem+env(safe-area-inset-top))] sm:pt-[calc(4.85rem+env(safe-area-inset-top))]'
               : 'pt-6 sm:pt-8'
@@ -215,8 +215,8 @@ export const QuranPage: React.FC<QuranPageProps> = React.memo(
             style={{
               fontSize: 'calc(clamp(22px, 2.35vw, 30px) * var(--font-scale, 1))',
               lineHeight: 2.24,
-              textAlignLast: isFinalPage ? 'center' : 'right',
-              wordSpacing: '0.02em',
+              textAlignLast: isFinalPage ? 'center' : 'start',
+              textJustify: 'inter-word',
             }}
           >
             {renderedVerses.map(({verse, idx, baseColor, segments}) => {
